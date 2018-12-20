@@ -54,7 +54,7 @@ void horizontal(SDL_Surface *img )
 	}
       white = 1;
     }  
-    
+    printf("%d",num_char);
     
 }
 
@@ -70,6 +70,10 @@ void resize (SDL_Surface *scr ,int **src_bin, int (*dest)[28]){
 	
 	
 	b= ((scr->h)+adhaut)/28 ;
+    
+    printf( " %d %d %d %d %d %d\n", a, adlarg , b , adhaut, scr->w , scr -> h );
+    
+    
 	for (int i=0; i<28; i++){
 		//printf("aa");
 		for(int j=0; j<28; j++){
@@ -84,22 +88,28 @@ void resize (SDL_Surface *scr ,int **src_bin, int (*dest)[28]){
 				r=0;
 				b=0;
 				g=0;*/
-                int s=1;
-				if( ((I+i) < (scr->w)) || ((J+j) < (scr->h)) ){
+                int s=0;
+                int x=(i*a)+I;
+                int y=((j*b)+J);
+				if(  (x < 100 )&& (y < 100 ) ){
 					
 					//Uint32 pix= getpixel(src, I+i, J+j);
 					//SDL_GetRGB(pix, src->format, &r, &g, &b);
-                    s=src_bin[I+i][J+j];
+                    s=src_bin[x][y];
+                   
 				}
+				//printf("%d ",src_bin[I+i][J+j]);
 				/*R=r+R;
 				G=g+G;
 				B=b+B;*/
                 S=S+s;
-				}
-			 }
-			 
+            }
+            // printf("  ");
+           }
+           
+          // printf(" - ");
 
-			 if ( ( S / ( a * b ) ) < 0.5 ){
+           if ( ( S/(a*b)  ) < 0.5 ){
 			//if ( (R/(a * b)) >127 && (B/(a * b)) > 127 && (G/(a * b)) >127){
 				/*R = 255;
 				B = 255;
@@ -114,15 +124,13 @@ void resize (SDL_Surface *scr ,int **src_bin, int (*dest)[28]){
                 
                 dest[i][j]=1;
 			}
-			
 			/*Uint32 pixel = SDL_MapRGB( dest-> format, R, G, B);
 			putpixel(dest, i, j, pixel);*/
         
 			
-		
+		//printf("\n");
 		}
 	}
-
 }
 
 
@@ -145,9 +153,10 @@ void binarised(SDL_Surface *img){
         img_bin[i][j]=0;
           
           }
-          
+          printf("%d", img_bin[i][j]);
           
         }
+        printf("\n");
         }
     int r_img[28][28];
     //r_img = calloc(28 * sizeof(*r_img));

@@ -25,12 +25,12 @@ void run_image_treatment(char *img)
       open_image(img_surface);
       wait_for_keypressed();
       
-      horizontal(img_surface);
+      /*horizontal(img_surface);
       open_image(img_surface);
       wait_for_keypressed();
       separate(img_surface);
       open_image(img_surface);
-      wait_for_keypressed();
+      wait_for_keypressed();*/
       binarised(img_surface);
       /*resize(img);
       wait_for_keypressed();
